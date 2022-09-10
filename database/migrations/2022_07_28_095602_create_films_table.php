@@ -21,7 +21,8 @@ return new class extends Migration
                 ->nullable();
             $table->string('preview_image', 255)
                 ->nullable();
-            $table->string('background_image', 255);
+            $table->string('background_image', 255)
+                ->nullable();
             $table->char('background_color', 9)
                 ->default("#ffffff");
             $table->string('video_link', 255)

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddFilmRequest;
+use App\Jobs\AddFilmJob;
 use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Responsable;
@@ -25,12 +27,12 @@ class FilmController extends Controller
     /**
      * Adding a movie to the database.
      *
+     * @param AddFilmRequest $request
+     * @return JsonResponse|Responsable
      * @api {post} /api/films
      *
-     * @param  Request  $request
-     * @return JsonResponse|Responsable
      */
-    public function store(Request $request): JsonResponse|Responsable
+    public function store(AddFilmRequest $request): JsonResponse|Responsable
     {
         // добавляет информацию о фильме в базу данных.
         //
@@ -38,7 +40,10 @@ class FilmController extends Controller
         // HTTP_UNPROCESSABLE_ENTITY
         // Или все ОК - HTTP_OK
         // При сохранении проверяем наличие связанных жанров и создаем при отсутствии.
-        return $this->success();
+
+        AddFilmJob::dispatch($request->imdb);
+
+        return $this->success(null, 201);
     }
 
     /**

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('directors', function (Blueprint $table) {
             $table->id();
             $table->string('name', 128);
+            $table->timestamps();
         });
     }
 

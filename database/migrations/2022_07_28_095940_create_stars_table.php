@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('stars', function (Blueprint $table) {
             $table->id();
             $table->string('name', 128);
+            $table->timestamps();
         });
     }
 
