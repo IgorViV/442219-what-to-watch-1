@@ -36,7 +36,8 @@ Route::group(['prefix' => 'films'], function () {
 });
 
 Route::prefix('films')->middleware('auth:sanctum')->group(function () {
-    Route::post('/', [\App\Http\Controllers\Api\FilmController::class, 'store']);                     // moderator
+    Route::post('/', [\App\Http\Controllers\Api\FilmController::class, 'store'])
+        ->name('films.store');                                                                      // moderator
     Route::patch('/{id}', [\App\Http\Controllers\Api\FilmController::class, 'update'])                // moderator
         ->where('id', '\d+');
     Route::post('/{id}/favorite', [\App\Http\Controllers\Api\FavoriteController::class, 'store'])

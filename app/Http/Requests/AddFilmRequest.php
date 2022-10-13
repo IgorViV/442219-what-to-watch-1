@@ -37,7 +37,7 @@ class AddFilmRequest extends FormRequest
     {
         return [
             'imdb.regex' => 'imdb_id должен быть передан в формате ttNNNN',
-            'imdb.unique' => 'Такой сериал уже есть'
+            'imdb.unique' => 'Такой фильм уже есть'
         ];
     }
 }
